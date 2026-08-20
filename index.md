@@ -63,6 +63,35 @@ Hi! My name is Sathwik Kintada
 
 <br>
 
+### CSA Units
+
+> AP CSA lesson notebooks, click to jump into each unit.
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/csa/unit_01/1_1" style="text-decoration: none;">
+        <div style="background-color: var(--green); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Unit 1
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csa/unit_02/2_1" style="text-decoration: none;">
+        <div style="background-color: var(--blue); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Unit 2
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csa/unit_03/3_1" style="text-decoration: none;">
+        <div style="background-color: var(--warn); color: black; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Unit 3
+        </div>
+    </a>
+    <a href="{{site.baseurl}}/csa/unit_04/4_1" style="text-decoration: none;">
+        <div style="background-color: var(--orange); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           Unit 4
+        </div>
+    </a>
+</div>
+
+<br>
+
 ### Class Progress
 
 > Here is my game progress through coding, click to see these in the browser
