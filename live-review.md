@@ -4,6 +4,7 @@ title: "Live Review: Sprint 1"
 permalink: /live-review/
 search_exclude: true
 hide: true
+codemirror: true
 ---
 
 <p style="max-width: 700px;">
