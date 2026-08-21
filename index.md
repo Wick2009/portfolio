@@ -97,6 +97,20 @@ Hi! My name is Sathwik Kintada
 
 <br>
 
+### SDLC Walkthrough
+
+> One real portfolio update, walked through Plan → Design → Develop → Test → Deploy → Maintain.
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+    <a href="{{site.baseurl}}/sdlc" style="text-decoration: none;">
+        <div style="background-color: var(--red); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
+           SDLC Walkthrough
+        </div>
+    </a>
+</div>
+
+<br>
+
 ### Class Progress
 
 > Here is my game progress through coding, click to see these in the browser
