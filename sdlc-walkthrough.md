@@ -9,7 +9,7 @@ hide: true
 <p style="max-width: 700px;">
 One real portfolio feature, walked through the six SDLC phases — not a hypothetical, actual
 commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f"><code>6188668</code></a>
-(built it) and <a href="https://github.com/Wick2009/portfolio/commit/PLACEHOLDER_SHA"><code>PLACEHOLDER_SHORT</code></a>
+(built it) and <a href="https://github.com/Wick2009/portfolio/commit/00b5c2a101a90a7b658b54e22696562105504176"><code>00b5c2a</code></a>
 (revised it after review). The revision is the interesting part — most real dev work has one.
 </p>
 
@@ -56,7 +56,7 @@ commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507f
   every lesson with a persistent progress checkbox. Along the way the audit did catch a real bug —
   the home page's Unit 2/3/4 buttons linked straight to empty lessons — fixed in the same pass.<br>
   Commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f">6188668</a> →
-  <a href="https://github.com/Wick2009/portfolio/commit/PLACEHOLDER_SHA">PLACEHOLDER_SHORT</a>
+  <a href="https://github.com/Wick2009/portfolio/commit/00b5c2a101a90a7b658b54e22696562105504176">00b5c2a</a>
   </td>
 </tr>
 <tr style="border-bottom: 1px solid #444;">
@@ -74,7 +74,7 @@ commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507f
   <td style="padding:8px;" id="sdlc-deploy-cell">
   Pushed to <code>main</code>; GitHub Actions rebuilt and redeployed the Pages site automatically.
   Runs: <a href="https://github.com/Wick2009/portfolio/actions/runs/32448239770">32448239770</a> (build) →
-  <a href="https://github.com/Wick2009/portfolio/actions/runs/PLACEHOLDER_RUN">PLACEHOLDER_RUN</a> (revision)
+  <a href="https://github.com/Wick2009/portfolio/actions/runs/32508131230">32508131230</a> (revision)
   </td>
 </tr>
 <tr>
