@@ -7,9 +7,10 @@ hide: true
 ---
 
 <p style="max-width: 700px;">
-One real portfolio change, walked through the six SDLC phases — not a hypothetical, an
-actual commit: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f"><code>6188668</code></a>,
-"Add CSA lesson dashboard, fix stub links on home page."
+One real portfolio feature, walked through the six SDLC phases — not a hypothetical, actual
+commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f"><code>6188668</code></a>
+(built it) and <a href="https://github.com/Wick2009/portfolio/commit/PLACEHOLDER_SHA"><code>PLACEHOLDER_SHORT</code></a>
+(revised it after review). The revision is the interesting part — most real dev work has one.
 </p>
 
 <table style="width:100%; max-width: 800px; border-collapse: collapse;">
@@ -24,62 +25,66 @@ actual commit: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🧭 Plan</td>
   <td style="padding:8px;">
   For the Unit 1-4 "unicorn" ask, I checked what other students had already built (via their
-  public repos/issues) before picking mine, so it wouldn't overlap. Three people had converged
-  on embedding the class's Code Runner into lessons; one (Harrish) had hand-written a static
-  Markdown checklist flagging which copied lesson notebooks were empty placeholder "stubs" vs.
-  fully written. I decided to build the same kind of structural audit — but automated: a script
-  that classifies real vs. stub from notebook cell counts (not lesson content), plus a live,
-  searchable dashboard page instead of a file you open in VS Code.
+  public repos/issues) before picking mine. Three people had converged on embedding the class's
+  Code Runner into lessons; one (Harrish) had hand-written a static Markdown checklist flagging
+  which copied lesson notebooks were still empty placeholders. My first version automated that
+  same idea — a script classifying real vs. stub lessons. On review, that got flagged as a
+  problem: it only means anything <em>while</em> lessons are unfinished. Once every lesson is
+  written, a page whose whole pitch is "here's what's incomplete" has nothing left to say. So the
+  actual plan became: keep the part with lasting value (fast search across 61+ lessons,
+  progress tracking) and drop the part that expires (the real/stub audit).
   </td>
 </tr>
 <tr style="border-bottom: 1px solid #444;">
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🎨 Design</td>
   <td style="padding:8px;">
-  Before writing code, I validated the classification rule against real files: every lesson I
-  checked was either exactly 1 cell (front matter only, &lt;200 chars — a stub) or several
-  cells with real content. Clean signal, no fuzzy threshold needed. For output, I reused this
-  repo's existing pattern — a generated <code>_data/*.yml</code> file consumed by a Liquid
-  page — the same approach already used by <code>study-tracker.html</code> and
-  <code>exercisegraphs.html</code>. Styling matches the home page's existing button rows
-  (same <code>var(--green/blue/warn/orange/teal)</code> palette).
+  Kept the existing repo pattern — a generated <code>_data/*.yml</code> file consumed by a
+  Liquid page, same approach as <code>study-tracker.html</code> and
+  <code>exercisegraphs.html</code> — and the same button styling as the rest of the home page.
+  Removed the REAL/STUB badges, the stub counts, and the "hide stubs" toggle from the UI; kept
+  every lesson checkable regardless of completion status, since progress tracking is useful no
+  matter how much content exists yet.
   </td>
 </tr>
 <tr style="border-bottom: 1px solid #444;">
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🛠️ Develop</td>
   <td style="padding:8px;">
-  Built <code>scripts/generate_csa_lesson_index.py</code> (scans <code>_notebooks/CSA/ap_mcq_lessons/unit_0[1-4]</code>,
-  groups homework/backup files under their lesson number, writes <code>_data/csa_units.yml</code>),
-  <code>csa-dashboard.md</code> (the <code>/csa/dashboard</code> page — search box, hide-stubs
-  toggle, per-lesson progress checkboxes), and fixed the home page's Unit 2/3/4 buttons, which
-  the audit revealed were linking straight to empty stub lessons.<br>
-  Commit: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f">6188668</a>
+  <code>scripts/generate_csa_lesson_index.py</code> still scans
+  <code>_notebooks/CSA/ap_mcq_lessons/unit_0[1-4]</code> and groups homework/backup files under
+  their lesson number, but the stub classification is no longer surfaced in the UI.
+  <code>csa-dashboard.md</code> (<code>/csa/dashboard</code>) is now a plain searchable index of
+  every lesson with a persistent progress checkbox. Along the way the audit did catch a real bug —
+  the home page's Unit 2/3/4 buttons linked straight to empty lessons — fixed in the same pass.<br>
+  Commits: <a href="https://github.com/Wick2009/portfolio/commit/6188668081a13507fea47841a03fcab064fcf92f">6188668</a> →
+  <a href="https://github.com/Wick2009/portfolio/commit/PLACEHOLDER_SHA">PLACEHOLDER_SHORT</a>
   </td>
 </tr>
 <tr style="border-bottom: 1px solid #444;">
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🧪 Test</td>
   <td style="padding:8px;">
-  Ran <code>make serve</code> locally and tested in-browser: confirmed the summary counts
-  (31 real / 17 stub across units 1-4) match a manual spot check, confirmed the search box
-  filters rows by number/title, confirmed "hide stubs" toggles correctly, checked off a lesson
-  and confirmed it persisted in <code>localStorage</code> across a full page reload, and
-  clicked through a "real"-flagged link (Unit 2 → 2.3) to confirm it loads actual lesson
-  content rather than a stub.
+  Ran <code>make serve</code> locally after the revision: confirmed the search box still filters
+  by number/title, confirmed a lesson checkbox persists in <code>localStorage</code> across a
+  full page reload, confirmed the REAL/STUB badges and "hide stubs" control are actually gone
+  from the rendered page (not just the source), and confirmed the home page's Unit 1-4 and
+  Lesson Index links all still resolve.
   </td>
 </tr>
 <tr style="border-bottom: 1px solid #444;">
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🚀 Deploy</td>
   <td style="padding:8px;" id="sdlc-deploy-cell">
   Pushed to <code>main</code>; GitHub Actions rebuilt and redeployed the Pages site automatically.
-  Run: <a href="https://github.com/Wick2009/portfolio/actions/runs/32448239770">32448239770</a>
+  Runs: <a href="https://github.com/Wick2009/portfolio/actions/runs/32448239770">32448239770</a> (build) →
+  <a href="https://github.com/Wick2009/portfolio/actions/runs/PLACEHOLDER_RUN">PLACEHOLDER_RUN</a> (revision)
   </td>
 </tr>
 <tr>
   <td style="padding:8px; vertical-align:top; font-weight:bold;">🔧 Maintain</td>
   <td style="padding:8px;">
-  The script is meant to be re-run, not one-off — any time a stub lesson gets filled in or new
-  lessons are added, <code>python3 scripts/generate_csa_lesson_index.py</code> regenerates the
-  data and the dashboard updates itself. Next improvement: wire that regeneration into
-  <code>make serve</code>/<code>make build</code> automatically instead of running it by hand.
+  This row is basically what just happened: got feedback that the stub-audit framing wouldn't
+  hold up over time, so I cut it rather than leave dead weight in the UI. The script itself is
+  still meant to be re-run as lessons get added —
+  <code>python3 scripts/generate_csa_lesson_index.py</code> — the index just no longer treats
+  "incomplete" as the interesting fact about a lesson.
   </td>
 </tr>
 </tbody>

@@ -65,7 +65,7 @@ Hi! My name is Sathwik Kintada
 
 ### CSA Units
 
-> AP CSA lesson notebooks, click to jump into each unit. Or see the [full lesson dashboard]({{site.baseurl}}/csa/dashboard) — every lesson flagged real vs. empty stub.
+> AP CSA lesson notebooks, click to jump into each unit. Or see the [full lesson index]({{site.baseurl}}/csa/dashboard) — search all 61+ lessons and track your progress in one place.
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
     <a href="{{site.baseurl}}/csa/unit_01/1_1" style="text-decoration: none;">
@@ -90,7 +90,7 @@ Hi! My name is Sathwik Kintada
     </a>
     <a href="{{site.baseurl}}/csa/dashboard" style="text-decoration: none;">
         <div style="background-color: var(--teal); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; transition: transform 0.2s, box-shadow 0.2s;">
-           Lesson Dashboard
+           Lesson Index
         </div>
     </a>
 </div>
