@@ -3,6 +3,7 @@
   id="runner-{{ include.runner_id }}"
   data-runner-id="{{ include.runner_id }}"
   data-default-code="{{ include.code | jsonify | escape }}"
+  data-expected-output="{{ include.expected | jsonify | escape }}"
   data-storage-key="{{ page.permalink | replace: '/', '_' }}_{{ include.runner_id }}">
   {% capture code_runner_title %}Code Runner Challenge {% if include.challenge_number %}#{{ include.challenge_number }}{% endif %}{% endcapture %}
   {% include runners/fragments/challenge-box.html title=code_runner_title challenge=include.challenge %}
@@ -52,6 +53,7 @@
     <div class="output-content">Click "Run" in code control panel to see output ...</div>
     <div class="control-panel">
       <span class="execTime"></span>
+      {% if include.expected %}<span class="expectedResult" style="font-weight:bold;"></span>{% endif %}
     </div>
   </div>
 </div>
@@ -117,6 +119,7 @@ import { pythonURI, javaURI, fetchOptions } from '{{site.baseurl}}/assets/js/api
   
   const initialLang = "{{ include.language }}";
   const defaultCode = JSON.parse(container.dataset.defaultCode || "\"\"");
+  const expectedOutput = JSON.parse(container.dataset.expectedOutput || "\"\"");
   const editorHeight = "{{ include.height }}";
   const storageKey = container.dataset.storageKey;
   const runner = new BaseRunner(container, { storageKey });
@@ -139,6 +142,7 @@ import { pythonURI, javaURI, fetchOptions } from '{{site.baseurl}}/assets/js/api
   const fontSizeSelect = container.querySelector('.fontSizeSelect');
   const outputDiv = container.querySelector('.output-content');
   const execTimeSpan = container.querySelector('.execTime');
+  const resultSpan = container.querySelector('.expectedResult');
   const codeExecutor = new CodeExecutor({
     editor,
     outputElement: outputDiv,
@@ -147,6 +151,8 @@ import { pythonURI, javaURI, fetchOptions } from '{{site.baseurl}}/assets/js/api
     pythonURI,
     javaURI,
     fetchOptions,
+    expectedOutput,
+    resultElement: resultSpan,
   });
 
   const pseudoExecutor = new PseudocodeExecutor({

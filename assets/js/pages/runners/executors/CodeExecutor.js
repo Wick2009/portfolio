@@ -1,5 +1,5 @@
 export class CodeExecutor {
-  constructor({ editor, outputElement, execTimeElement, languageSelect, pythonURI, javaURI, fetchOptions = {} } = {}) {
+  constructor({ editor, outputElement, execTimeElement, languageSelect, pythonURI, javaURI, fetchOptions = {}, expectedOutput = '', resultElement = null } = {}) {
     this.editor = editor;
     this.outputElement = outputElement;
     this.execTimeElement = execTimeElement;
@@ -7,6 +7,20 @@ export class CodeExecutor {
     this.pythonURI = pythonURI;
     this.javaURI = javaURI;
     this.fetchOptions = fetchOptions;
+    this.expectedOutput = expectedOutput;
+    this.resultElement = resultElement;
+  }
+
+  checkExpected(actualOutput) {
+    if (!this.resultElement || !this.expectedOutput) return;
+
+    const normalize = (s) => String(s).trim().replace(/\r\n/g, '\n');
+    const passed = normalize(actualOutput) === normalize(this.expectedOutput);
+
+    this.resultElement.textContent = passed
+      ? '✅ Output matches expected'
+      : '❌ Output doesn\'t match yet';
+    this.resultElement.style.color = passed ? 'var(--green, #2ecc71)' : 'var(--red, #e74c3c)';
   }
 
   async run() {
@@ -21,6 +35,7 @@ export class CodeExecutor {
 
     outputDiv.textContent = '⏳ Running...';
     if (execTimeSpan) execTimeSpan.textContent = '';
+    if (this.resultElement) this.resultElement.textContent = '';
 
     const startTime = Date.now();
     const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
@@ -47,6 +62,7 @@ export class CodeExecutor {
       if (execTimeSpan) {
         execTimeSpan.textContent = `⏱Execution time: ${Date.now() - startTime}ms`;
       }
+      this.checkExpected(output);
     } catch (err) {
       if (lang === 'javascript' && isLocalhost) {
         this.runJavaScriptFallback(code, startTime);
@@ -72,10 +88,12 @@ export class CodeExecutor {
       eval(code);
       console.log = originalLog;
 
-      outputDiv.textContent = logs.length > 0 ? logs.join('\n') : '[no output]';
+      const output = logs.length > 0 ? logs.join('\n') : '[no output]';
+      outputDiv.textContent = output;
       if (execTimeSpan) {
         execTimeSpan.textContent = `⏱Execution time: ${Date.now() - startTime}ms (local fallback)`;
       }
+      this.checkExpected(output);
     } catch (evalErr) {
       outputDiv.textContent = 'Error: ' + evalErr.message;
       if (execTimeSpan) execTimeSpan.textContent = '';

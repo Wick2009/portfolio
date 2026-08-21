@@ -119,7 +119,7 @@ lesson gets written, a page whose whole point is "here's what's missing" has not
 </p>
 
 <p style="max-width:700px;">
-My unicorn is the <strong>CSA Lesson Index</strong>: a script that scans all 52 lesson notebooks
+My unicorn has two parts. <strong>Part 1</strong> is the <strong>CSA Lesson Index</strong>: a script that scans all 52 lesson notebooks
 and generates a single searchable page — type a lesson number or keyword, jump straight to it,
 check it off as you finish, and that progress is remembered next time you're back. It replaces
 digging through 4 nested folders of notebooks with one page. I also went through one real
@@ -137,6 +137,56 @@ it wouldn't hold up once lessons are actually finished.
     <a href="https://github.com/Wick2009/portfolio/blob/main/scripts/generate_csa_lesson_index.py" style="text-decoration: none;">
         <div style="background-color: var(--panel, #333); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; border: 1px solid #888;">
            View the script →
+        </div>
+    </a>
+</div>
+
+<h3>Part 2: an actual improvement to the Code Runner</h3>
+
+<p style="max-width:700px;">
+The class Code Runner (<code>_includes/runners/code.html</code>) runs code and prints raw output
+— it has no way to tell you whether that output is <em>correct</em>, so every existing example
+I've seen relies on a human eyeballing it. I added an optional <code>expected</code> parameter:
+when a lesson author sets it, the runner compares the program's real output against it and shows
+a ✅/❌ badge automatically. Fully backward compatible — existing runners that don't pass
+<code>expected</code> behave exactly as before.
+</p>
+
+<p style="max-width:700px;">Try it — hit Run below:</p>
+
+{% capture unicorn_demo_challenge %}
+This should print 1 through 5, each on its own line. Hit Run — the badge under the output
+auto-checks it against the expected result. Then try breaking the loop bound and run again.
+{% endcapture %}
+
+{% capture unicorn_demo_code %}
+public class Demo {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+        }
+    }
+}
+{% endcapture %}
+
+{% capture unicorn_demo_expected %}1
+2
+3
+4
+5{% endcapture %}
+
+{% include runners/code.html
+   runner_id="unicorn-demo"
+   language="java"
+   challenge=unicorn_demo_challenge
+   code=unicorn_demo_code
+   expected=unicorn_demo_expected
+%}
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0;">
+    <a href="https://github.com/Wick2009/portfolio/commit/RUNNER_COMMIT_SHA" style="text-decoration: none;">
+        <div style="background-color: var(--panel, #333); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; border: 1px solid #888;">
+           View the runner change →
         </div>
     </a>
 </div>
