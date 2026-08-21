@@ -184,7 +184,7 @@ public class Demo {
 %}
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0;">
-    <a href="https://github.com/Wick2009/portfolio/commit/RUNNER_COMMIT_SHA" style="text-decoration: none;">
+    <a href="https://github.com/Wick2009/portfolio/commit/7dac92f" style="text-decoration: none;">
         <div style="background-color: var(--panel, #333); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; border: 1px solid #888;">
            View the runner change →
         </div>
