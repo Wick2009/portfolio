@@ -7,6 +7,14 @@ show_reading_time: false
 
 Hi! My name is Sathwik Kintada
 
+<div style="margin: 12px 0 24px;">
+    <a href="{{site.baseurl}}/live-review/" style="text-decoration: none;">
+        <div style="background-color: var(--red); color: white; padding: 14px 24px; border-radius: 6px; font-weight: bold; display: inline-block;">
+           🦄 Live Review: Sprint 1 →
+        </div>
+    </a>
+</div>
+
 ### Development Environment
 
 
